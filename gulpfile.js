@@ -13,8 +13,8 @@ const
     terser = require('gulp-terser'),
 
     // paths
-    src = '/src',
-    build = '/build';
+    src = 'src',
+    build = 'build';
 
 //HTML processing
 function html(){
@@ -27,7 +27,7 @@ function html(){
 
 //CSS processing
 function css(){
-    const out = build + 'assets/css'
+    const out = build + '/assets/css'
 
     return gulp.src(src + '/scss/main.scss')
             .pipe(sass({
@@ -57,10 +57,10 @@ function js(){
  * @param {*} done
  * @return void
  */
-function watch(){
+function watch(done){
     sync.init({
         server: {
-            baseDir: '.' + build
+            baseDir: './' + build
         }
     });
 
@@ -68,7 +68,7 @@ function watch(){
     gulp.watch(src + '/html/**/*', html);
 
     //CSS changes
-    gulp.watch(src + '/scss/**/*', scss);
+    gulp.watch(src + '/scss/**/*', css);
 
     //JS changes
     gulp.watch(src + '/js/**/*', js);
